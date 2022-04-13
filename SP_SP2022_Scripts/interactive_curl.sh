@@ -22,7 +22,7 @@ else
     then
 	{ time (xargs -I % -P $num -n 1 curl -ks --max-time 5 -o /dev/null --http2  "https://172.31.81.42/" < <(printf '%s\n' {1..$num})) } 2> $HOME/Desktop/runtime.log
     else
-	{ time (seq 1 $num | xargs -n 1 -P $num curl --http2 https://172.31.81.42/img/image.jpg -ks -o /dev/null) } 2> $HOME/Desktop/runtime.log
+	{ time (seq 1 $num | xargs -n 1 -P $num curl --http2 https://172.31.81.42/img/image.jpg --max-time 5 -ks -o /dev/null) } 2> $HOME/Desktop/runtime.log
 	#xargs -I % -P $num -n 1 curl -ks --max-time 5 -o /dev/null --http2  "https://172.31.81.42/img/car.jpg" < <(printf '%s\n' {1..$num})
     fi # Inner IF
 fi # Outter IF
